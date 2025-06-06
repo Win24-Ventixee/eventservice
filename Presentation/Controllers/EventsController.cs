@@ -27,10 +27,7 @@ public class EventsController(IEventService eventService) : ControllerBase
 
   [HttpPost]
   public async Task<IActionResult> Creaste(CreateEventRequest request)
-  {
-    if(!ModelState.IsValid)
-      return BadRequest(ModelState);
-
+  { 
     var result = await _eventService.CreateEventAsync(request);
     return result.Success ? Ok(result) : StatusCode(500, result.Error);
   }
